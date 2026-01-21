@@ -5,10 +5,10 @@ function Header({ currentView, onViewChange }) {
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          <span className="logo-chinese">中文</span>
-          <h1>Daily Chinese</h1>
+          <span className="logo-chinese">语伴</span>
+          <h1>Yǔbàn</h1>
         </div>
-        <p className="tagline">Learn a little Chinese every day</p>
+        <p className="tagline">Your Chinese Language Companion</p>
         <div className="header-buttons">
           <button 
             className={`header-btn ${currentView === 'quiz' ? 'active' : ''}`}
