@@ -163,9 +163,3 @@ Contributions are welcome! Some ideas:
 ## License
 
 MIT License - feel free to use this for your own learning or build upon it.
-
----
-
-Made with ❤️ for Chinese learners everywhere.
-
-加油！(jiā yóu!) - You can do it!
