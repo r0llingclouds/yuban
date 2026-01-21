@@ -1,0 +1,462 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #e63946;
+  --primary-dark: #c1121f;
+  --secondary: #457b9d;
+  --secondary-light: #a8dadc;
+  --dark: #1d3557;
+  --light: #f1faee;
+  --white: #ffffff;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-500: #adb5bd;
+  --gray-700: #495057;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--light) 0%, var(--secondary-light) 100%);
+  min-height: 100vh;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+}
+
+.header-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.logo-chinese {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--white);
+  padding: 8px 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.logo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.tagline {
+  color: var(--gray-700);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.stats-toggle {
+  background: var(--white);
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stats-toggle:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.stats-toggle.active {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+/* Daily Lesson styles */
+.daily-lesson {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+}
+
+.lesson-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.lesson-header h2 {
+  font-size: 1.75rem;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+
+.lesson-header .date {
+  color: var(--gray-500);
+  font-size: 0.95rem;
+}
+
+.lesson-section {
+  margin-bottom: 35px;
+}
+
+.lesson-section h3 {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  margin-bottom: 15px;
+  padding-left: 5px;
+  border-left: 3px solid var(--primary);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.cards-grid.single {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Lesson Card styles */
+.lesson-card {
+  background: var(--gray-100);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.lesson-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.lesson-card.learned {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-color: #28a745;
+}
+
+.card-type {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gray-500);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.category {
+  background: var(--secondary-light);
+  color: var(--secondary);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.chinese-text {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.pinyin {
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.meaning-section {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.english {
+  font-size: 1.1rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.reveal-btn {
+  background: var(--secondary-light);
+  color: var(--secondary);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reveal-btn:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
+
+.card-actions {
+  min-height: 45px;
+}
+
+.learn-btn {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.learn-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.learn-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.learned-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #28a745;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.learned-badge .check {
+  font-size: 1.2rem;
+}
+
+.lesson-tip {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+  border-radius: 12px;
+  padding: 15px 20px;
+  font-size: 0.9rem;
+  color: #856404;
+  margin-top: 20px;
+}
+
+/* Progress Stats styles */
+.progress-stats {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+}
+
+.progress-stats h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: var(--dark);
+  margin-bottom: 30px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: var(--gray-100);
+  border-radius: 16px;
+  padding: 20px 15px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-section {
+  margin-bottom: 25px;
+}
+
+.progress-section h3 {
+  font-size: 1rem;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  background: var(--gray-200);
+  border-radius: 10px;
+  height: 16px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar-container.large {
+  height: 24px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  min-width: 0;
+}
+
+.progress-bar.phrases {
+  background: linear-gradient(90deg, var(--secondary) 0%, #2a5674 100%);
+}
+
+.progress-bar.overall {
+  background: linear-gradient(90deg, #28a745 0%, #1e7e34 100%);
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: var(--gray-700);
+}
+
+.reset-section {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.reset-btn {
+  background: transparent;
+  color: var(--gray-500);
+  border: 1px solid var(--gray-300);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  background: #dc3545;
+  color: var(--white);
+  border-color: #dc3545;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+
+  .header {
+    padding: 25px 15px;
+  }
+
+  .logo {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logo-chinese {
+    font-size: 2rem;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .daily-lesson,
+  .progress-stats {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .chinese-text {
+    font-size: 2.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-chinese {
+    font-size: 1.75rem;
+    padding: 6px 12px;
+  }
+
+  .logo h1 {
+    font-size: 1.25rem;
+  }
+
+  .chinese-text {
+    font-size: 2rem;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+  }
+}
