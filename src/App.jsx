@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import Header from './components/Header'
 import DailyLesson from './components/DailyLesson'
 import ProgressStats from './components/ProgressStats'
+import Quiz from './components/Quiz'
 import useProgress from './hooks/useProgress'
 
 function App() {
-  const [showStats, setShowStats] = useState(false)
+  const [currentView, setCurrentView] = useState('lesson') // 'lesson', 'stats', 'quiz'
   const {
     stats,
     markWordLearned,
@@ -13,28 +14,52 @@ function App() {
     isWordLearned,
     isPhraseLearned,
     resetProgress,
+    markItemsSeen,
+    getSeenCount,
+    recordAnswer,
+    getItemsForReview,
+    getMasteryStatus,
   } = useProgress()
+
+  const renderView = () => {
+    switch (currentView) {
+      case 'stats':
+        return (
+          <ProgressStats 
+            stats={stats}
+            onReset={resetProgress}
+          />
+        )
+      case 'quiz':
+        return (
+          <Quiz
+            onExit={() => setCurrentView('lesson')}
+            getItemsForReview={getItemsForReview}
+            recordAnswer={recordAnswer}
+            getMasteryStatus={getMasteryStatus}
+            getSeenCount={getSeenCount}
+          />
+        )
+      default:
+        return (
+          <DailyLesson
+            isWordLearned={isWordLearned}
+            isPhraseLearned={isPhraseLearned}
+            markWordLearned={markWordLearned}
+            markPhraseLearned={markPhraseLearned}
+            markItemsSeen={markItemsSeen}
+          />
+        )
+    }
+  }
 
   return (
     <div className="app">
       <Header 
-        onShowStats={() => setShowStats(!showStats)}
-        showingStats={showStats}
+        currentView={currentView}
+        onViewChange={setCurrentView}
       />
-      
-      {showStats ? (
-        <ProgressStats 
-          stats={stats}
-          onReset={resetProgress}
-        />
-      ) : (
-        <DailyLesson
-          isWordLearned={isWordLearned}
-          isPhraseLearned={isPhraseLearned}
-          markWordLearned={markWordLearned}
-          markPhraseLearned={markPhraseLearned}
-        />
-      )}
+      {renderView()}
     </div>
   )
 }

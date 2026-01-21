@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LessonCard from './LessonCard'
 import vocabulary from '../data/vocabulary'
 import phrases from '../data/phrases'
@@ -8,7 +8,8 @@ function DailyLesson({
   isWordLearned, 
   isPhraseLearned, 
   markWordLearned, 
-  markPhraseLearned 
+  markPhraseLearned,
+  markItemsSeen 
 }) {
   // Get today's content based on the day number
   const dayNumber = getDayNumber()
@@ -25,6 +26,13 @@ function DailyLesson({
   // Select 1 phrase deterministically based on day
   const phraseIndex = dayNumber % phrases.length
   const todaysPhrase = phrases[phraseIndex]
+  
+  // Mark today's items as seen when the lesson loads
+  useEffect(() => {
+    const wordIds = todaysWords.map(w => w.id)
+    const phraseIds = [todaysPhrase.id]
+    markItemsSeen(wordIds, phraseIds)
+  }, [dayNumber]) // Only re-run if day changes
   
   // Format today's date nicely
   const today = new Date()

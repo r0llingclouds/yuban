@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header({ onShowStats, showingStats }) {
+function Header({ currentView, onViewChange }) {
   return (
     <header className="header">
       <div className="header-content">
@@ -9,12 +9,20 @@ function Header({ onShowStats, showingStats }) {
           <h1>Daily Chinese</h1>
         </div>
         <p className="tagline">Learn a little Chinese every day</p>
-        <button 
-          className={`stats-toggle ${showingStats ? 'active' : ''}`}
-          onClick={onShowStats}
-        >
-          {showingStats ? 'Back to Lesson' : 'View Progress'}
-        </button>
+        <div className="header-buttons">
+          <button 
+            className={`header-btn ${currentView === 'quiz' ? 'active' : ''}`}
+            onClick={() => onViewChange(currentView === 'quiz' ? 'lesson' : 'quiz')}
+          >
+            {currentView === 'quiz' ? 'Back to Lesson' : 'Start Quiz'}
+          </button>
+          <button 
+            className={`header-btn ${currentView === 'stats' ? 'active' : ''}`}
+            onClick={() => onViewChange(currentView === 'stats' ? 'lesson' : 'stats')}
+          >
+            {currentView === 'stats' ? 'Back to Lesson' : 'View Progress'}
+          </button>
+        </div>
       </div>
     </header>
   )
