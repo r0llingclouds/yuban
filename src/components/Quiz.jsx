@@ -215,35 +215,13 @@ function Quiz({ onExit, getItemsForReview, recordAnswer, getMasteryStatus, getSe
       </div>
 
       <div className="quiz-card">
-        <div className="quiz-type">
-          {currentItem.isWord ? 'Vocabulary' : 'Phrase'}
-          {currentItem.category && <span className="quiz-category">{currentItem.category}</span>}
-        </div>
-
-        {/* Mastery status indicator */}
-        <div className="mastery-status">
-          <span className={`mastery-badge ${currentMastery?.pinyinCorrect ? 'complete' : 'incomplete'}`}>
-            Pinyin {currentMastery?.pinyinCorrect ? '✓' : '○'}
-          </span>
-          <span className={`mastery-badge ${currentMastery?.meaningCorrect ? 'complete' : 'incomplete'}`}>
-            Meaning {currentMastery?.meaningCorrect ? '✓' : '○'}
-          </span>
-        </div>
-
         <div className="quiz-chinese">
           {currentItem.chinese}
         </div>
 
-        {/* Show English hint when testing pinyin */}
-        {currentQuestionType === 'pinyin' && (
-          <div className="quiz-hint">
-            <span className="hint-label">Meaning:</span> {currentItem.english}
-          </div>
-        )}
-
         <div className="quiz-question-type">
           {currentQuestionType === 'pinyin' ? (
-            <p className="quiz-instruction">
+            <p className={`quiz-instruction ${currentQuestionType === 'pinyin' ? 'quiz-instruction-pinyin' : ''}`}>
               Type the <strong>pinyin</strong>
               <span className="instruction-hint">(use numbers for tones: ni3 hao3)</span>
             </p>

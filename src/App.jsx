@@ -43,11 +43,8 @@ function App() {
       default:
         return (
           <DailyLesson
-            isWordLearned={isWordLearned}
-            isPhraseLearned={isPhraseLearned}
-            markWordLearned={markWordLearned}
-            markPhraseLearned={markPhraseLearned}
             markItemsSeen={markItemsSeen}
+            recordAnswer={recordAnswer}
           />
         )
     }

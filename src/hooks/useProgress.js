@@ -131,6 +131,14 @@ const normalizeForComparison = (str) => {
     .replace(/[^a-z0-9]/g, '')
 }
 
+// Normalize pinyin for comparison: preserve tone marks, only lowercase/trim/collapse spaces
+const normalizePinyinForComparison = (str) => {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ')
+}
+
 // Levenshtein distance for typo tolerance
 const levenshtein = (a, b) => {
   const matrix = []
@@ -158,41 +166,45 @@ const levenshtein = (a, b) => {
 
 // Check if pinyin answer is correct (with tone number support)
 export const checkPinyinAnswer = (userAnswer, correctPinyin) => {
-  // Convert tone numbers in user input to tone marks
+  // Convert tone numbers to tone marks so both sides use the same form
   const convertedAnswer = convertToneNumbers(userAnswer)
+  const convertedCorrect = convertToneNumbers(correctPinyin)
   
-  // Normalize both for comparison
-  const normalizedAnswer = normalizeForComparison(convertedAnswer)
-  const normalizedCorrect = normalizeForComparison(correctPinyin)
+  // Normalize with tone-preserving normalizer (no stripping of tones)
+  const normalizedAnswer = normalizePinyinForComparison(convertedAnswer)
+  const normalizedCorrect = normalizePinyinForComparison(convertedCorrect)
   
-  // Exact match
-  if (normalizedAnswer === normalizedCorrect) {
-    return true
-  }
-  
-  // Allow 1 typo for longer words
-  if (normalizedCorrect.length > 3 && levenshtein(normalizedAnswer, normalizedCorrect) <= 1) {
-    return true
-  }
-  
-  return false
+  // Exact match only; no typo tolerance so wrong tones (e.g. shi1 vs shi3) never match
+  return normalizedAnswer === normalizedCorrect
 }
 
 // Check if meaning answer is correct
 export const checkMeaningAnswer = (userAnswer, correctEnglish) => {
   const normalizedAnswer = normalizeForComparison(userAnswer)
   const normalizedCorrect = normalizeForComparison(correctEnglish)
-  
-  // Exact match
+
+  // Exact match against full correct string
   if (normalizedAnswer === normalizedCorrect) {
     return true
   }
-  
-  // Allow 1 typo for longer words
+
+  // Allow 1 typo for longer words (full string)
   if (normalizedCorrect.length > 3 && levenshtein(normalizedAnswer, normalizedCorrect) <= 1) {
     return true
   }
-  
+
+  // Accept any comma-separated alternative (e.g. "not have" for "not have, there is not")
+  const alternatives = correctEnglish.split(',').map(s => s.trim()).filter(Boolean)
+  for (const alt of alternatives) {
+    const normalizedAlt = normalizeForComparison(alt)
+    if (normalizedAnswer === normalizedAlt) {
+      return true
+    }
+    if (normalizedAlt.length > 3 && levenshtein(normalizedAnswer, normalizedAlt) <= 1) {
+      return true
+    }
+  }
+
   return false
 }
 

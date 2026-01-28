@@ -8,7 +8,6 @@ function Header({ currentView, onViewChange }) {
           <span className="logo-chinese">语伴</span>
           <h1>Yǔbàn</h1>
         </div>
-        <p className="tagline">Your Chinese Language Companion</p>
         <div className="header-buttons">
           <button 
             className={`header-btn ${currentView === 'quiz' ? 'active' : ''}`}
