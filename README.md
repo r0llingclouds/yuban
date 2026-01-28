@@ -14,7 +14,10 @@ A modern web app that teaches you Chinese vocabulary and phrases, a little bit e
 
 ## Content
 
-### Vocabulary (100 words)
+### Vocabulary (HSK1 – 150 words)
+
+Vocabulary follows the official HSK Level 1 word list.
+
 | Category | Examples |
 |----------|----------|
 | Greetings | 你好, 谢谢, 再见 |
@@ -130,7 +133,7 @@ chinese/
     │   ├── Quiz.jsx        # Quiz interface
     │   └── ProgressStats.jsx # Progress dashboard
     ├── data/
-    │   ├── vocabulary.js   # 100 vocabulary words
+    │   ├── vocabulary.js   # HSK1 vocabulary (150 words)
     │   └── phrases.js      # 50 common phrases
     └── hooks/
         └── useProgress.js  # Progress tracking & SRS logic
@@ -157,7 +160,7 @@ Contributions are welcome! Some ideas:
 - Add more vocabulary/phrases
 - Add audio pronunciation
 - Add handwriting practice
-- Add HSK level filtering
+- Add HSK2+ vocabulary or other HSK levels
 - Add dark mode
 
 ## License
