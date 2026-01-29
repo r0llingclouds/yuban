@@ -10,6 +10,12 @@ function Header({ currentView, onViewChange }) {
         </div>
         <div className="header-buttons">
           <button 
+            className={`header-btn ${currentView === 'study' ? 'active' : ''}`}
+            onClick={() => onViewChange(currentView === 'study' ? 'lesson' : 'study')}
+          >
+            {currentView === 'study' ? 'Back to Lesson' : 'Study'}
+          </button>
+          <button 
             className={`header-btn ${currentView === 'quiz' ? 'active' : ''}`}
             onClick={() => onViewChange(currentView === 'quiz' ? 'lesson' : 'quiz')}
           >

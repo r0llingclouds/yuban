@@ -3,10 +3,11 @@ import Header from './components/Header'
 import DailyLesson from './components/DailyLesson'
 import ProgressStats from './components/ProgressStats'
 import Quiz from './components/Quiz'
+import Study from './components/Study'
 import useProgress from './hooks/useProgress'
 
 function App() {
-  const [currentView, setCurrentView] = useState('lesson') // 'lesson', 'stats', 'quiz'
+  const [currentView, setCurrentView] = useState('lesson') // 'lesson', 'stats', 'quiz', 'study'
   const {
     stats,
     markWordLearned,
@@ -28,6 +29,15 @@ function App() {
           <ProgressStats 
             stats={stats}
             onReset={resetProgress}
+          />
+        )
+      case 'study':
+        return (
+          <Study
+            onExit={() => setCurrentView('lesson')}
+            onStartQuiz={() => setCurrentView('quiz')}
+            getItemsForReview={getItemsForReview}
+            getSeenCount={getSeenCount}
           />
         )
       case 'quiz':
